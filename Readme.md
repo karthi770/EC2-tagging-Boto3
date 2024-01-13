@@ -4,12 +4,15 @@ Lambda Function:
 Create a Lambda function with Python runtime. 
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/2b46a430-5ec3-4f41-9886-a2d2d0a27d71)
 
+We create this test event so that when we run this we get a cloud watch log group created.
+![[Pasted image 20240113121233.png]]
+
 CloudTrail:
 Now create a CloudTrail give it a name and disable the KMS encryption.
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/944f1b95-44eb-4b3e-93fb-88354b7fe15e)
 
-Enable the CloudWatch logs and create a role for CloudWatch 
-![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/10e4f005-8850-4823-af07-9b99aefaf06f)
+Enable the CloudWatch logs and create a role for CloudWatch CloudTrailRoleForCloudWatchLogs_774721023955-da4d4d0d (this format is visible in the placeholder)
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/f0675331-5444-44de-866d-b8aa6d91cc7c)
 
 Make sure the default settings are unchanged.
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/2b97f367-e0ab-4897-8544-233ec8bd9e64)
@@ -24,8 +27,8 @@ Give a name to the event
 In step - 2 select the event pattern:
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/c3eb28ac-b453-4827-9100-9ce147aedf3d)
 
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/14d060d1-844c-48f4-a31a-615b71ff917e)
 Select the specific operation and give "Runinstances" because that is the keyword EventBridge will recognize.
-![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/ea6ffb7a-af7b-4083-98c3-19d282532230)
 
 Our target is Lambda function and select the function that we created in Lambda. Next step only review and create.
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/115d9e7d-f2a6-4374-8590-d556029574fb)
@@ -41,6 +44,7 @@ Now in the documentation -> go to Amazon EC2 Example -> and get the code to conf
 import boto3
 ec2 = boto3.client('ec2')
 ```
+
 
 
 
