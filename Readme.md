@@ -28,7 +28,7 @@ In step - 2 select the event pattern:
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/c3eb28ac-b453-4827-9100-9ce147aedf3d)
 
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/14d060d1-844c-48f4-a31a-615b71ff917e)
-Select the specific operation and give "Runinstances" because that is the keyword EventBridge will recognize.
+Select the specific operation and give "RunInstances" because that is the keyword EventBridge will recognize. (Runinstances shown in the image is incorrect, it should be RunInstances)
 
 Our target is Lambda function and select the function that we created in Lambda. Next step only review and create.
 ![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/115d9e7d-f2a6-4374-8590-d556029574fb)
@@ -45,6 +45,22 @@ import boto3
 ec2 = boto3.client('ec2')
 ```
 
+```python
+def lambda_handler(event, context):
+#the event parameter gets the data from the event that triggered the lambda.
+```
 
+```python
+import json
+import boto3
 
+ec2 = boto3.client('ec2')
+
+def lambda_handler(event, context):
+    print(event)
+
+```
+this boto3 code will give you the data when we launch an Ec2 instance.
+
+Once the code is type click **deploy.**
 
