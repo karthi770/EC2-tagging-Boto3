@@ -60,7 +60,12 @@ def lambda_handler(event, context):
     print(event)
 
 ```
-this boto3 code will give you the data when we launch an Ec2 instance.
+%%this boto3 code will give you the data when we launch an Ec2 instance.%%
 
-Once the code is type click **deploy.**
+Once the code is typed click **deploy.**
 
+Now create an instance and took into CloudWatch, you could see a log group thats been created and a huge JSON format can be seen in the log. 
+This JSON is the result of `print(event)` in the code. 
+
+
+![AWS](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/110a8102-f9d8-4cef-977c-72369e6c7da3)
