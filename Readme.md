@@ -60,12 +60,45 @@ def lambda_handler(event, context):
     print(event)
 
 ```
-%%this boto3 code will give you the data when we launch an Ec2 instance.%%
 
-Once the code is typed click **deploy.**
+> [!NOTE]
+this boto3 code will give you the data when we launch an Ec2 instance.
+
+Once the code is typed click ==**deploy.**==
 
 Now create an instance and took into CloudWatch, you could see a log group thats been created and a huge JSON format can be seen in the log. 
 This JSON is the result of `print(event)` in the code. 
-
-
 ![AWS](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/110a8102-f9d8-4cef-977c-72369e6c7da3)
+
+We need 2 data from this output, one is the username and the other is instance id. So we create 2 variables and we extract those data from the JSON.
+
+```python
+import json
+import boto3
+
+ec2 = boto3.client('ec2')
+
+def lambda_handler(event, context):
+    print(event)
+    user = event['detail']['userIdentity']['userName']
+	instanceId = event['detail']['responseElements']['instancesSet']['items'][0]['instanceId']
+
+	ec2.create_tags(
+		Resource=[
+			instanceId
+		],
+		Tags=[
+			{
+				'Key':'Owner',
+				'Value': user
+			},
+		]
+	)
+	 
+    ```
+>[!TIP]
+>The syntax for create tags can be seen in the boto3 documentation.
+
+
+The above boto3 code shall tag the ec2 instance that was created by an user but ==the permission for Lambda function to access the ec2 instance needs to be given.==
+
