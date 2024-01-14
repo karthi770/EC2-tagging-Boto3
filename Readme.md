@@ -95,10 +95,10 @@ def lambda_handler(event, context):
 		]
 	)
 	 
-    ```
+```
+
 >[!TIP]
 >The syntax for create tags can be seen in the boto3 documentation.
-
 
 The above boto3 code shall tag the ec2 instance that was created by an user but ==the permission for Lambda function to access the ec2 instance needs to be given.==
 
