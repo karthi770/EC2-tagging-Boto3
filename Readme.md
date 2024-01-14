@@ -80,21 +80,21 @@ ec2 = boto3.client('ec2')
 
 def lambda_handler(event, context):
     print(event)
-    user = event['detail']['userIdentity']['userName']
-	instanceId = event['detail']['responseElements']['instancesSet']['items'][0]['instanceId']
+    user = event['detail']['userIdentity']['accountId']
+    instanceId = event['detail']['responseElements']['instancesSet']['items'][0]['instanceId']
+    ec2.create_tags(
+        Resources=[
+            instanceId
+        ],
+        Tags=[
+            {
+                'Key': 'Owner',
+                'Value': user
+            },
+        ]
+    )
+    return
 
-	ec2.create_tags(
-		Resource=[
-			instanceId
-		],
-		Tags=[
-			{
-				'Key':'Owner',
-				'Value': user
-			},
-		]
-	)
-	 
 ```
 
 >[!TIP]
@@ -102,3 +102,13 @@ def lambda_handler(event, context):
 
 The above boto3 code shall tag the ec2 instance that was created by an user but ==the permission for Lambda function to access the ec2 instance needs to be given.==
 
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/6097eb43-c2e8-4ad1-b286-ea946e0aae6a)
+
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/b5072372-7862-4f07-9860-b23ec14f9ae5)
+
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/5d975309-d46e-48ad-a006-cdba29c89b22)
+
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/372d5ade-f5f8-4093-b4b5-372f0f79728b)
+
+![image](https://github.com/karthi770/EC2-tagging-Boto3/assets/102706119/fef72b01-f2dd-4bb1-8b01-610f3948810f)
+From the above image we can see the owner seems to be account id of the user who created the ec2 instance.
